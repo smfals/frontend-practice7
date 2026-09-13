@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>星球宇宙</title>
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+</head>
+<body>
+<a-scene>
+  <!-- 光源 -->
+  <a-light type="ambient" color="#444466" intensity="0.3"></a-light>
+  <a-light type="point" color="#ffdd66" position="0 0 -12" intensity="1.2"></a-light>
+
+  <!-- 星空背景 -->
+  <a-sky color="#050520"></a-sky>
+
+  <!-- 远景星云平面 -->
+  <a-plane color="#101030" rotation="-90 0 0" position="0 -25 0" width="200" height="200"></a-plane>
+
+</a-scene>
+</body>
+</html>
