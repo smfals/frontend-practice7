@@ -1,86 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>星球宇宙</title>
-<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <meta charset="UTF-8">
+    <title>星球宇宙</title>
+    <!-- script放在head里，消除注册顺序警告 -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 </head>
 <body>
 <a-scene>
-  <!-- 光源 -->
-  <a-light type="ambient" color="#444466" intensity="0.3"></a-light>
-  <a-light type="point" color="#ffdd66" position="0 0 -12" intensity="1.2"></a-light>
+    <!-- 光源 -->
+    <a-light type="ambient" color="#444466" intensity="0.3"></a-light>
+    <a-light type="point" color="#ffdd66" position="0 0 -12" intensity="1.2"></a-light>
 
-  <!-- 星空背景 -->
-  <a-sky color="#050520"></a-sky>
+    <!-- 星空背景 -->
+    <a-sky color="#050520"></a-sky>
 
-  <!-- 远景星云平面 -->
-  <a-plane color="#101030" rotation="-90 0 0" position="0 -25 0" width="200" height="200"></a-plane>
+    <!-- 远景星云平面 -->
+    <a-plane color="#101030" rotation="-90 0 0" position="0 -25 0" width="200" height="200"></a-plane>
 
+    <!-- 太阳 球体，自转动画 -->
+    <a-sphere id="sun"
+              position="0 0 -12"
+              radius="1.2"
+              color="#ffcc22"
+              material="emissive:#ff9900; emissiveIntensity:0.6"
+              animation__rotate="property: rotation; dur: 20000; to: 0 360 0; loop: true">
+    </a-sphere>
+
+    <!-- 地球 球体，自转动画 -->
+    <a-sphere id="earth"
+              position="4 0 -10"
+              radius="0.6"
+              color="#3388dd"
+              animation__rotate="property: rotation; dur: 12000; to: 0 360 0; loop: true">
+    </a-sphere>
+
+    <!-- 土星组：球体 + 圆环光环，整体自转 -->
+    <a-entity id="saturn-group"
+              position="-5 0 -9"
+              animation__rotate="property: rotation; dur: 15000; to: 0 360 0; loop: true">
+        <a-sphere radius="0.7" color="#ddaa66"></a-sphere>
+        <a-torus radius="1.1" radius-tubular="0.1" rotation="80 0 0" color="#c9b386"></a-torus>
+    </a-entity>
+
+    <!-- 彗星 圆锥，左右移动动画 -->
+    <a-cone id="comet"
+            position="0 2 -7"
+            radius-bottom="0.2"
+            height="1.0"
+            color="#aaffff"
+            animation__move="property: position; from: 8 2 -7; to: -8 2 -7; dur: 6000; loop: true; easing: linear">
+    </a-cone>
+
+    <!-- 远处流星点缀 -->
+    <a-sphere position="6 3 -15" radius="0.15" color="#ffffff"></a-sphere>
+    <a-sphere position="-7 -2 -14" radius="0.1" color="#eeeeee"></a-sphere>
 </a-scene>
 </body>
 </html>
-<a-scene>
-  <!-- 光源 -->
-  <a-light type="ambient" color="#444466" intensity="0.3"></a-light>
-  <a-light type="point" color="#ffdd66" position="0 0 -12" intensity="1.2"></a-light>
-
-  <!-- 星空背景 -->
-  <a-sky color="#050520"></a-sky>
-
-  <!-- 远景星云平面 -->
-  <a-plane color="#101030" rotation="-90 0 0" position="0 -25 0" width="200" height="200"></a-plane>
-
-  <!-- 太阳 sphere -->
-  <a-sphere id="sun" position="0 0 -12" radius="1.2" color="#ffcc22" material="emissive:#ff9900; emissiveIntensity:0.6">
-  </a-sphere>
-
-  <!-- 地球 sphere -->
-  <a-sphere id="earth" position="4 0 -10" radius="0.6" color="#3388dd">
-  </a-sphere>
-
-  <!-- 土星组：球体 + torus圆环光环 -->
-  <a-entity id="saturn-group" position="-5 0 -9">
-    <a-sphere radius="0.7" color="#ddaa66"></a-sphere>
-    <a-torus radius="1.1" radius-tubular="0.1" rotation="80 0 0" color="#c9b386"></a-torus>
-  </a-entity>
-
-</a-scene>
-<a-scene>
-  <!-- 光源 -->
-  <a-light type="ambient" color="#444466" intensity="0.3"></a-light>
-  <a-light type="point" color="#ffdd66" position="0 0 -12" intensity="1.2"></a-light>
-
-  <!-- 星空背景 -->
-  <a-sky color="#050520"></a-sky>
-
-  <!-- 远景星云平面 -->
-  <a-plane color="#101030" rotation="-90 0 0" position="0 -25 0" width="200" height="200"></a-plane>
-
-  <!-- 太阳 sphere 自转动画 -->
-  <a-sphere id="sun" position="0 0 -12" radius="1.2" color="#ffcc22" material="emissive:#ff9900; emissiveIntensity:0.6">
-    <a-animation attribute="rotation" dur="20000" to="0 360 0" repeat="indefinite"></a-animation>
-  </a-sphere>
-
-  <!-- 地球 sphere 自转动画 -->
-  <a-sphere id="earth" position="4 0 -10" radius="0.6" color="#3388dd">
-    <a-animation attribute="rotation" dur="12000" to="0 360 0" repeat="indefinite"></a-animation>
-  </a-sphere>
-
-  <!-- 土星组 sphere+torus 整体自转动画 -->
-  <a-entity id="saturn-group" position="-5 0 -9">
-    <a-sphere radius="0.7" color="#ddaa66"></a-sphere>
-    <a-torus radius="1.1" radius-tubular="0.1" rotation="80 0 0" color="#c9b386"></a-torus>
-    <a-animation attribute="rotation" dur="15000" to="0 360 0" repeat="indefinite"></a-animation>
-  </a-entity>
-
-  <!-- 彗星 cone圆锥！第3种几何体！横飞位移动画 -->
-  <a-cone id="comet" position="0 2 -7" radius-bottom="0.2" height="1.0" color="#aaffff">
-    <a-animation attribute="position" from="8 2 -7" to="-8 2 -7" dur="6000" repeat="indefinite" easing="linear"></a-animation>
-  </a-cone>
-
-  <!-- 远处小流星点缀 -->
-  <a-sphere position="6 3 -15" radius="0.15" color="#ffffff"></a-sphere>
-  <a-sphere position="-7 -2 -14" radius="0.1" color="#eeeeee"></a-sphere>
-
-</a-scene>
